@@ -1,0 +1,60 @@
+<h1>Personal Information</h1>
+<form [formGroup]="registerForm">
+    <div>
+        <label for="fullName">Full Name</label>
+            <input type="text" class="form-control" formControlName="fullName">
+            <br><br> 
+    </div>
+    <div >
+        <label for="mail">Email</label>
+            <input type="text" class="form-control" formControlName="email">
+            <br><br> 
+    </div>
+    <div>
+        <label for="pasword">Create Password</label>
+            <input type="text" class="form-control" formControlName="Password">
+            <br><br> 
+    </div>
+    <div>
+        <label for="contact">Enter Phone Number</label>
+            <input type="text" class="form-control" formControlName="number">
+            <br><br> 
+    </div>
+    <div>
+        <label for="city">Enter City</label>
+            <input type="text" class="form-control" formControlName="city">
+            <br><br> 
+    </div>
+    <div formArrayName="family">
+        <h2>Enter Family Data</h2>
+            <button class="btnA" (click)="addFamily()">Add </button>
+            <button class="btnR" (click)="removeFamily()">Remove</button><br><br> 
+    </div>
+        <div *ngFor="let fam of family.controls; let i=index" [formGroupName]="i">
+                <div>
+                    <label for="Name{{i}}">Name</label>
+                    <input type="text" class="form-control" formControlName="familyName"><br><br> 
+        </div>
+        
+            <div>
+                <label for="Relation{{ i }}">Relation</label>
+                <input type="text" class="form-control" formControlName="relation"><br><br> 
+            </div>
+       </div>
+
+<button type="submit" (click)="onSubmit()">Submit</button><br><br> 
+</form>
+<hr>
+<h2> Form Data</h2>
+<br><br>
+    Name: {{getName}}
+<br><br>  
+    Email: {{getEmail}}
+<br><br>    
+    Contact Number: {{getNumber}}
+<br><br>
+    City: {{getCity}}
+<br><br>
+    Family Member: {{getMemberName?.value.name}}
+<br><br>    
+    Relation: {{getMemberName?.value.relation}}
